@@ -6,6 +6,11 @@
   Small python script to receive Nexus temperature device data.
   Works with Gqrx UDP output, don't forget to activate it!
   
+  Nexus devices are also supported by rtl_433:
+  https://github.com/merbanan/rtl_433/blob/master/src/devices/nexus.c
+  
+  See the link above for full description of the radio protocol.
+  
   Dependencies: datetime, socket, struct, schmitt_trigger
   
   This file is part of nexus_device.py.
