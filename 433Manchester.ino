@@ -19,7 +19,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with Sirène.py.  If not, see <https://www.gnu.org/licenses/>.
+ * along with 433Manchester.  If not, see <https://www.gnu.org/licenses/>.
  * 
  */ 
 
