@@ -8,7 +8,7 @@ To fully understand the following, you have to feel comfortable with Arduino env
 This program receives and extracts data from Nexus weather device, as temperature or humidity. It's similar to rtl_433, but it works better in low level signals. See the protocol description here: https://github.com/merbanan/rtl_433/blob/master/src/devices/nexus.c
 
 Steps:
-  - First, install gqrx: `apt-get install gqrx` (for Debian/Ubuntu) or any other software able to demodulate ASK signals and send audio data over UDP.
+  - First, install gqrx: `apt-get install gqrx-sdr` (for Debian/Ubuntu) or any other software able to demodulate ASK signals and send audio data over UDP.
   - Launch it and enable UDP audio output:
     - click down to `...` button at bottom-right corner, and in the `network` tab, set `host: 127.0.0.1 ; port: 7355 ; 'stereo' box unchecked`)
     - click down to `UDP` button, to enable UDP stream.
@@ -28,3 +28,8 @@ Required stuff:
 First, compile `433Manchester.ino` and send it to the Arduino with the Arduino IDE. Solder a wire to the command pin of the remote oscillator, and plug it in the Arduino output pin (given in the `433Manchester.ino` file, `3` by default). Then, open a serial terminal (for example `minicom`) and change some parameters: `device: /dev/ttyACM0 ; Baud rate: 115200 ; parity: 8N1 (usually default parameter).` The transmission part is ready: every new line in the terminal is sent when pressing `Enter` down.
 
 On the second computer, install `gqrx` or another software able to demodulate ASK and to send audio data over UDP (see previous section for more details). The manchester_reader.py program expects audio data on the 7355 UDP port - the default one used by gqrx. If you choose gqrx, before starting, don't forget to activate UDP sink (it isn't by default). Then, run `python3 mancherster_reader.py` and you should see the data sent by the other computer.
+
+## arduino433.py and 433ArduinoIO.ino
+With these tools, you can control an Arduino output with a 433MHz remote.
+
+First, compile `433ArduinoIO.ino` and send it to the Arduino with the Arduino IDE. Connect your stuff to control to the pin number 10. On your computer, install and launch gqrx, as described in the first section. Don't forget to activate UDP audio sink. Then, install rtl_433 (Debian/Ubuntu: `apt-get install rtl-433`) and run it. Press the button of your remote, to get the code, and change the `EXPECTED_CODE` variable at the beginning of `arduino433.py` in consequence. Last, run the script with the `python3 arduino433.py` command. You should be able to control your stuff with the remote.
